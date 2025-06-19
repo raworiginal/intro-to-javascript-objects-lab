@@ -1,11 +1,13 @@
 const pokemon = require("./data.js");
 
-const allPokemon = []; //added this to use in some of the logic.
-pokemon.forEach((mon) => {
-  allPokemon.push(mon.name);
-});
+function getPokemonObj(pokemonName) {
+  for (mon of pokemon) {
+    if (mon.name === pokemonName) {
+      return mon;
+    }
+  }
+}
 
-// console.log(allPokemon);
 const game = {
   party: [],
   gyms: [
@@ -45,7 +47,7 @@ Exercise 4
 
 Solve Exercise 4 here:
 */
-game.party.push("Squirtle");
+game.party.push(getPokemonObj("Squirtle"));
 // console.log(game.party);
 /*
 Exercise 5
@@ -55,9 +57,11 @@ Exercise 5
 
 Solve Exercise 5 here:
 */
-game.party.push("Flareon", "Gengar", "Pidgeon");
+const newPokemon = ["Flareon", "Gengar", "Zapdos"];
+newPokemon.forEach((newMon) => {
+  game.party.push(getPokemonObj(newMon));
+});
 
-console.log(`Current Party is ${game.party.join(" * ")}`);
 /*
 Exercise 6
 1. Set the `completed` property to true for gyms with a difficulty below 3.
@@ -88,8 +92,8 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
-game.party.splice(0, 1, "Wartortle");
-console.log(`Current Party is ${game.party.join(" * ")}`);
+game.party.splice(0, 1, getPokemonObj("Wartortle"));
+
 /*
 Exercise 8
 1. Print the name of each Pokémon in your party.
@@ -97,9 +101,9 @@ Exercise 8
 
 Solve Exercise 8 here:
 */
-for (let pokemon of game.party) {
-  console.log(`${game.party.indexOf(pokemon) + 1}. ${pokemon}`);
-}
+game.party.forEach((mon) => {
+  console.log(mon.name);
+});
 /*
 Exercise 9
 1. Can you print out all the starter Pokémon from the `pokemon` array?
@@ -146,7 +150,7 @@ game.catchPokemon = (pokemonObj) => {
         item.quantity--;
         game.party.push(pokemonObj);
         console.log(
-          `You caught a ${pokemonObj}! You have ${item.quantity} ${item.name}s remaining.`
+          `You caught a ${pokemonObj.name}! You have ${item.quantity} ${item.name}s remaining.`
         );
       } else {
         console.log("You are all out of pokeballs");
@@ -154,7 +158,7 @@ game.catchPokemon = (pokemonObj) => {
     }
   });
 };
-game.catchPokemon("Sandshrew");
+game.catchPokemon(getPokemonObj("Sandshrew"));
 /*
 Exercise 12
 1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
@@ -243,3 +247,12 @@ Exercise 16
 Solve Exercise 16 here:
 */
 console.log(game);
+
+/*
+Exercise 17
+1. Arrange the Pokémon in `game.party` by their HP. The one with the highest HP should come first.
+2. You'll need to use the `.sort()` method. How does the compare function work in sorting numbers?
+
+
+Solve Exercise 17 here:
+*/
