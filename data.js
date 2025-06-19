@@ -153,4 +153,4 @@ const pokemon = [
   { number: 151, name: "Mew", type: "psychic", hp: 100, starter: false },
 ];
 
-modules.export = pokemon;
+module.exports = pokemon;
