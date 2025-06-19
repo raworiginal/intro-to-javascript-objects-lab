@@ -403,3 +403,12 @@ Log the object when it's constructed.
 
 Solve Exercise 21 here:
 */
+const pokemonByType = {};
+for (let mon of pokemon) {
+  if (mon.type in pokemonByType === false) {
+    pokemonByType[mon.type] = [];
+  }
+  pokemonByType[mon.type].push(mon);
+}
+
+console.log(pokemonByType);
