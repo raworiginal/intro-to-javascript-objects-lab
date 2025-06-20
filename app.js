@@ -1,12 +1,10 @@
 const pokemon = require("./data.js");
 
 function getPokemonObj(pokemonName) {
-  titleCase = (title) => {
-    return title
-      .toLowerCase()
-      .split(" ")
-      .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
-      .join(" ");
+  const titleCase = (name) => {
+    let firstLetter = name.charAt(0).toUpperCase();
+    let remainingLetters = name.slice(1).toLowerCase();
+    return firstLetter + remainingLetters;
   };
   pokemonName = titleCase(pokemonName);
   const found = pokemon.find((mon) => mon.name === pokemonName);
@@ -16,6 +14,7 @@ function getPokemonObj(pokemonName) {
   return found;
 }
 
+console.log(`This is the test string ${string}`);
 const game = {
   party: [],
   gyms: [
@@ -416,4 +415,4 @@ for (let mon of pokemon) {
   pokemonByType[mon.type].push(mon);
 }
 
-console.dir(pokemonByType, { maxArrayLength: 10 });
+console.dir(pokemonByType, { maxArrayLength: 5 });
