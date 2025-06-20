@@ -14,7 +14,6 @@ function getPokemonObj(pokemonName) {
   return found;
 }
 
-console.log(`This is the test string ${string}`);
 const game = {
   party: [],
   gyms: [
@@ -110,6 +109,7 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
+
 game.party.splice(0, 1, getPokemonObj("Wartortle"));
 
 /*
