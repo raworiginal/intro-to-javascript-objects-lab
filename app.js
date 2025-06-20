@@ -9,17 +9,11 @@ function getPokemonObj(pokemonName) {
       .join(" ");
   };
   pokemonName = titleCase(pokemonName);
-
-  for (mon of pokemon) {
-    try {
-      if (mon.name === pokemonName) {
-        return mon;
-      }
-    } catch (error) {
-      break;
-    }
+  const found = pokemon.find((mon) => mon.name === pokemonName);
+  if (!found) {
+    console.log(`Pokemon '${pokemonName}') does not exist`);
   }
-  console.log(`${pokemonName} does not exist.`);
+  return found;
 }
 
 const game = {
@@ -40,9 +34,13 @@ const game = {
     { name: "rare candy", quantity: 99 },
   ],
 };
-
+//exercise 1
+console.log(pokemon[58]);
 // console.dir(pokemon, { maxArrayLength: null });
+//exercise 2
+
 // console.log(game);
+
 /*
 Exercise 3
 1. Add a new property to the `game` object. Let's call it "difficulty".
@@ -62,6 +60,12 @@ Exercise 4
 Solve Exercise 4 here:
 */
 game.party.push(getPokemonObj("Squirtle"));
+// for (let mon of pokemon) {
+//   if (mon.name === "Squirtle" && mon.starter === true) {
+//     game.party.push(mon);
+//     // game['party'].push(mon)
+//   }
+// }
 // console.log(game.party);
 /*
 Exercise 5
@@ -72,6 +76,7 @@ Exercise 5
 Solve Exercise 5 here:
 */
 const newPokemon = ["Flareon", "Gengar", "Zapdos"];
+
 newPokemon.forEach((newMon) => {
   game.party.push(getPokemonObj(newMon));
 });
@@ -411,4 +416,4 @@ for (let mon of pokemon) {
   pokemonByType[mon.type].push(mon);
 }
 
-console.log(pokemonByType);
+console.dir(pokemonByType, { maxArrayLength: 10 });
