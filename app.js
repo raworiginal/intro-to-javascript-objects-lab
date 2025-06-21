@@ -58,12 +58,7 @@ Exercise 4
 Solve Exercise 4 here:
 */
 game.party.push(getPokemonObj("Squirtle"));
-// for (let mon of pokemon) {
-//   if (mon.name === "Squirtle" && mon.starter === true) {
-//     game.party.push(mon);
-//     // game['party'].push(mon)
-//   }
-// }
+
 // console.log(game.party);
 /*
 Exercise 5
@@ -241,7 +236,6 @@ This method should:
 Solve Exercise 14 here:
 */
 game.partyCount = () => game.party.length;
-
 console.log(`you have ${game.partyCount()} pokemon in your party`);
 /*
 Exercise 15
@@ -355,15 +349,15 @@ for (let item of game.items) {
 }
 game.catchPokemon = (pokemonName) => {
   //I made this fucntion for the earlier exercises. I updated to not be case
-  // sensitive and to return a note that the pokemon does not exist
-  let pokemonObj = getPokemonObj(pokemonName);
-  if (pokemonObj !== undefined) {
+  // sensitive and to return a note that the pokemon does not exist. getPokemonObj is defined at the top.
+  const pokemonObj = getPokemonObj(pokemonName);
+  if (pokemonObj) {
     game.items.forEach((item) => {
       if (item.name === "pokeball") {
-        if (item.quantity > 0) {
+        if (item.quantity) {
           item.quantity--;
           console.log(`You caught a ${pokemonObj.name}!`);
-          if (game.partyCount() < 6) {
+          if (game.partyCount() <= 6) {
             game.party.push(pokemonObj);
             console.log(`${pokemonObj.name} has been added to your party`);
           } else {
@@ -408,11 +402,11 @@ Log the object when it's constructed.
 Solve Exercise 21 here:
 */
 const pokemonByType = {};
-for (let mon of pokemon) {
-  if (mon.type in pokemonByType === false) {
+pokemon.forEach((mon) => {
+  if (!(mon.type in pokemonByType)) {
     pokemonByType[mon.type] = [];
   }
   pokemonByType[mon.type].push(mon);
-}
+});
 
 console.dir(pokemonByType, { maxArrayLength: 5 });
